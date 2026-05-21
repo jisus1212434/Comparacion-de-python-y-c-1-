@@ -1,0 +1,50 @@
+// EJERCICIO 2 - C++
+// Mapa para buscar productos
+
+#include <iostream>
+#include <map>
+#include <string>
+
+using namespace std;
+
+class Producto {
+public:
+    string nombre;
+    float precio;
+
+    // Constructor por defecto requerido por std::map al usar el operador []
+    Producto() {
+        nombre = "";
+        precio = 0.0;
+    }
+
+    Producto(string n, float p) {
+        nombre = n;
+        precio = p;
+    }
+};
+
+int main() {
+    // Creaci�n del mapa (Clave: string, Valor: Producto)
+    map<string, Producto> productos;
+    
+    // Llenado del mapa
+    productos["A001"] = Producto("Lapiz", 8.50);
+    productos["A002"] = Producto("Cuaderno", 35.00);
+    productos["A003"] = Producto("Pluma", 12.00);
+
+    string codigo;
+    cout << "Codigo a buscar: ";
+    cin >> codigo;
+
+    // B�squeda en el mapa usando iteradores
+    if (productos.find(codigo) != productos.end()) {
+        Producto producto = productos[codigo];
+        cout << "Producto: " << producto.nombre << endl;
+        cout << "Precio: $" << producto.precio << endl;
+    } else {
+        cout << "Codigo no encontrado" << endl;
+    }
+
+    return 0;
+}
